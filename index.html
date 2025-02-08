@@ -98,18 +98,44 @@
             margin: 0 auto;
         }
 
-        iframe {
-            width: 100%;
-            max-width: 500px;
-            height: 300px;
+          /* Video Section */
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .video-container {
+            position: relative;
+            overflow: hidden;
             border-radius: 10px;
-            border: none;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease-in-out;
         }
 
-        iframe:hover {
+        .video-container:hover {
             transform: scale(1.05);
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+        }
+
+        .video-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 12px;
+            font-size: 14px;
+            text-align: center;
         }
 
         /* Footer */
@@ -173,18 +199,18 @@
         <a href="football.html">football</a>
         <a href="cars.html">cars</a>
         <a href="music.html">music</a>
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Search videos..." onkeyup="searchVideos()">
+            <i class="fa fa-search search-icon"></i>
+        </div>
     </div>
-
-    <!-- Search Bar -->
-    <div class="search-container">
-        <form action="https://www.google.com/search" method="get" target="_blank">
-            <input type="text" name="q" placeholder="Search YouTube..." required>
-            <button type="submit">Search</button>
-        </form>
     </div>
-
+ <div class="content" id="video-container">
     <h2>This is the home tab</h2>
+
+      <div class="video-container" data-title="Football Highlights">
     <iframe src="https://www.youtube.com/embed/vxBLCV1YefA" allowfullscreen></iframe>
+          <div class="video-title">Foot Ball highlight</div>
     <iframe src="https://www.youtube.com/embed/X0KD6gXlFjY" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/Rcc9veq0JgM" allowfullscreen></iframe>
@@ -195,11 +221,23 @@
 </div>
 
 <script>
+    function searchVideos() {
+            let input = document.getElementById("search-bar").value.toLowerCase();
+            let videos = document.querySelectorAll(".video-container");
+
+            videos.forEach(video => {
+                let title = video.getAttribute("data-title").toLowerCase();
+                if (title.includes(input)) {
+                    video.style.display = "block";
+                } else {
+                    video.style.display = "none";
+                }
     // Wait for 5 seconds, then hide the loading image and show the content
     setTimeout(function() {
         document.getElementById('loadingImage').style.display = 'none'; // Hide the loading image
         document.getElementById('mainContent').style.display = 'block'; // Show the main content
     }, 5000); // 5000 milliseconds = 5 seconds
+    
 </script>
 
 </body>
