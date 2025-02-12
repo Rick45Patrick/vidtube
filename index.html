@@ -10,72 +10,53 @@
 </head>
 <body>
 
-<!-- Loading Image -->
-<div class="loading-image" id="loadingImage">
-    <img src="vid.webp" alt="Loading..." />
-</div>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <a href="yooo.html"><i class="fa fa-home"></i> Home</a>
+        <a href="shorts.html"><i class="fa fa-video"></i> Shorts</a>
+        <a href="football.html"><i class="fa fa-futbol"></i> Football</a>
+        <a href="cars.html"><i class="fa fa-car"></i> Cars</a>
+        <a href="music.html"><i class="fa fa-music"></i> Music</a>
+    </div>
 
-<!-- Main Content (Initially Hidden) -->
-<div class="hidden-content" id="mainContent">
-    <div class="topnav">
-        <a href="yooo.html">Home</a>
-        <a href="shorts.html">Shorts</a>
-        <a href="football.html">Football</a>
-        <a href="cars.html">Cars</a>
-        <a href="music.html">Music</a>
+    <!-- Main Content -->
+    <div class="main-content">
+        <h2>VidNexus - Video Streaming</h2>
+
+        <!-- Search Bar -->
         <div class="search-container">
             <input type="text" id="search-bar" placeholder="Search videos..." onkeyup="searchVideos()">
             <button><i class="fa fa-search"></i></button>
         </div>
+
+        <!-- Video Section -->
+        <div class="content" id="video-container">
+            <div class="video-container" data-title="Football Highlights">
+                <iframe src="https://www.youtube.com/embed/vxBLCV1YefA" allowfullscreen></iframe>
+                <div class="video-title">Football Highlights</div>
+            </div>
+
+            <div class="video-container" data-title="Epic Goals">
+                <iframe src="https://www.youtube.com/embed/X0KD6gXlFjY" allowfullscreen></iframe>
+                <div class="video-title">Epic Goals</div>
+            </div>
+
+            <div class="video-container" data-title="Cool Match Moments">
+                <iframe src="https://www.youtube.com/embed/Rcc9veq0JgM" allowfullscreen></iframe>
+                <div class="video-title">Cool Match Moments</div>
+            </div>
+        </div>
     </div>
 
-    <div class="content" id="video-container">
-        <h2>This is the home tab</h2>
-    <br>
-        <div class="video-container" data-title="Football Highlights">
-            <iframe src="https://www.youtube.com/embed/vxBLCV1YefA" allowfullscreen></iframe>
-            <div class="video-title">Football Highlight</div>
-        </div>
-
-        <div class="video-container" data-title="Epic Goals">
-            <iframe src="https://www.youtube.com/embed/X0KD6gXlFjY" allowfullscreen></iframe>
-            <div class="video-title">Epic Goals</div>
-        </div>
-
-        <div class="video-container" data-title="Cool Match Moments">
-            <iframe src="https://www.youtube.com/embed/Rcc9veq0JgM" allowfullscreen></iframe>
-            <div class="video-title">Cool Match Moments</div>
-        </div>
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+        <a href="yooo.html"><i class="fa fa-home"></i> Home</a>
+        <a href="shorts.html"><i class="fa fa-video"></i> Shorts</a>
+        <a href="football.html"><i class="fa fa-futbol"></i> Football</a>
+        <a href="cars.html"><i class="fa fa-car"></i> Cars</a>
+        <a href="music.html"><i class="fa fa-music"></i> Music</a>
     </div>
 
-    <footer>
-        <p>&copy; 2025 WHITE YT | <a href="#">Privacy</a></p>
-    </footer>
-</div>
-
-<script>
-    function searchVideos() {
-        let input = document.getElementById("search-bar").value.toLowerCase();
-        let videos = document.querySelectorAll(".video-container");
-
-        videos.forEach(video => {
-            let title = video.getAttribute("data-title").toLowerCase();
-            if (title.includes(input)) {
-                video.style.display = "block";
-            } else {
-                video.style.display = "none";
-            }
-        });
-    }
-
-    // Wait for 5 seconds, then hide the loading image and show the content
-    window.onload = function() {
-        setTimeout(function() {
-            document.getElementById('loadingImage').style.display = 'none'; // Hide loading image
-            document.getElementById('mainContent').style.display = 'block'; // Show main content
-        }, 5000);
-    };
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
