@@ -37,15 +37,15 @@
             <!-- Video Section -->
             <div class="content" id="video-container">
                 <div class="video-container" data-title="Football Highlights">
-                    <iframe src="https://www.youtube.com/embed/vxBLCV1YefA" allowfullscreen></iframe>
+                    <iframe class="video-frame" src="https://www.youtube.com/embed/vxBLCV1YefA" allowfullscreen></iframe>
                     <div class="video-title">Football Highlights</div>
                 </div>
                 <div class="video-container" data-title="Epic Goals">
-                    <iframe src="https://www.youtube.com/embed/X0KD6gXlFjY" allowfullscreen></iframe>
+                    <iframe class="video-frame" src="https://www.youtube.com/embed/X0KD6gXlFjY" allowfullscreen></iframe>
                     <div class="video-title">Epic Goals</div>
                 </div>
                 <div class="video-container" data-title="Cool Match Moments">
-                    <iframe src="https://www.youtube.com/embed/Rcc9veq0JgM" allowfullscreen></iframe>
+                    <iframe class="video-frame" src="https://www.youtube.com/embed/Rcc9veq0JgM" allowfullscreen></iframe>
                     <div class="video-title">Cool Match Moments</div>
                 </div>
             </div>
@@ -68,7 +68,12 @@
             
             videos.forEach(video => {
                 let title = video.getAttribute("data-title").toLowerCase();
-                video.style.display = title.includes(input) ? "block" : "none";
+                if (title.includes(input)) {
+                    video.style.display = "block";
+                    video.querySelector("iframe").classList.remove("small-video");
+                } else {
+                    video.style.display = "none";
+                }
             });
         }
 
