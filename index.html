@@ -5,80 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VidNexus</title>
     <link rel="icon" type="image/webp" href="vid.webp">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" defer>
     <link rel="stylesheet" href="vidnexus.css">
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loadingImage">Loading...</div>
 
-    <!-- Sidebar Navigation -->
-    <div class="sidebar">
-        <a href="yooo.html"><i class="fa fa-home"></i> Home</a>
-        <a href="shorts.html"><i class="fa fa-video"></i> Shorts</a>
-        <a href="football.html"><i class="fa fa-futbol"></i> Football</a>
-        <a href="cars.html"><i class="fa fa-car"></i> Cars</a>
-        <a href="music.html"><i class="fa fa-music"></i> Music</a>
-    </div>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <h2>VidNexus - Video Streaming</h2>
-
-        <!-- Search Bar -->
-        <div class="search-container">
-            <input type="text" id="search-bar" placeholder="Search videos..." oninput="searchVideos()">
-            <button><i class="fa fa-search"></i></button>
+    <div id="mainContent" style="display: none;">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <a href="yooo.html"><i class="fa fa-home"></i> Home</a>
+            <a href="shorts.html"><i class="fa fa-video"></i> Shorts</a>
+            <a href="football.html"><i class="fa fa-futbol"></i> Football</a>
+            <a href="cars.html"><i class="fa fa-car"></i> Cars</a>
+            <a href="music.html"><i class="fa fa-music"></i> Music</a>
         </div>
 
-        <!-- Video Section -->
-        <div class="content" id="video-container">
-            <div class="video-container" data-title="Football Highlights">
-                <iframe src="https://www.youtube.com/embed/vxBLCV1YefA" allowfullscreen></iframe>
-                <div class="video-title">Football Highlights</div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <h2>VidNexus - Video Streaming</h2>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search videos...">
+                <button onclick="searchVideos()"><i class="fa fa-search"></i></button>
             </div>
 
-            <div class="video-container" data-title="Epic Goals">
-                <iframe src="https://www.youtube.com/embed/X0KD6gXlFjY" allowfullscreen></iframe>
-                <div class="video-title">Epic Goals</div>
-            </div>
-
-            <div class="video-container" data-title="Cool Match Moments">
-                <iframe src="https://www.youtube.com/embed/Rcc9veq0JgM" allowfullscreen></iframe>
-                <div class="video-title">Cool Match Moments</div>
+            <!-- Video Section -->
+            <div class="content" id="video-container">
+                <div class="video-container" data-title="Football Highlights">
+                    <iframe src="https://www.youtube.com/embed/vxBLCV1YefA" allowfullscreen></iframe>
+                    <div class="video-title">Football Highlights</div>
+                </div>
+                <div class="video-container" data-title="Epic Goals">
+                    <iframe src="https://www.youtube.com/embed/X0KD6gXlFjY" allowfullscreen></iframe>
+                    <div class="video-title">Epic Goals</div>
+                </div>
+                <div class="video-container" data-title="Cool Match Moments">
+                    <iframe src="https://www.youtube.com/embed/Rcc9veq0JgM" allowfullscreen></iframe>
+                    <div class="video-title">Cool Match Moments</div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bottom Navigation Bar -->
-    <div class="bottom-nav">
-        <a href="yooo.html"><i class="fa fa-home"></i> Home</a>
-        <a href="shorts.html"><i class="fa fa-video"></i> Shorts</a>
-        <a href="football.html"><i class="fa fa-futbol"></i> Football</a>
-        <a href="cars.html"><i class="fa fa-car"></i> Cars</a>
-        <a href="music.html"><i class="fa fa-music"></i> Music</a>
+        <!-- Bottom Navigation Bar -->
+        <div class="bottom-nav">
+            <a href="yooo.html"><i class="fa fa-home"></i> Home</a>
+            <a href="shorts.html"><i class="fa fa-video"></i> Shorts</a>
+            <a href="football.html"><i class="fa fa-futbol"></i> Football</a>
+            <a href="cars.html"><i class="fa fa-car"></i> Cars</a>
+            <a href="music.html"><i class="fa fa-music"></i> Music</a>
+        </div>
     </div>
 
     <script>
         function searchVideos() {
-    let input = document.getElementById("search-bar").value.toLowerCase();
-    let videos = document.querySelectorAll(".video-container");
-
-    videos.forEach(video => {
-        let title = video.getAttribute("data-title").toLowerCase();
-        if (title.includes(input)) {
-            video.style.display = "block";
-        } else {
-            video.style.display = "none";
+            let input = document.getElementById("search-bar").value.toLowerCase();
+            let videos = document.querySelectorAll(".video-container");
+            
+            videos.forEach(video => {
+                let title = video.getAttribute("data-title").toLowerCase();
+                video.style.display = title.includes(input) ? "block" : "none";
+            });
         }
-    });
-}
 
-// Loading Animation - Show Content After 3 Seconds
-window.onload = function() {
-    setTimeout(function() {
-        document.getElementById('loadingImage')?.style.display = 'none';
-        document.getElementById('mainContent')?.style.display = 'block';
-    }, 3000);
-};
+        // Loading Animation - Show Content After 3 Seconds
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById('loadingImage').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+            }, 3000);
+        };
+
+        // Basic Firewall Protection (Blocks Malicious Bots)
+        if(navigator.userAgent.includes("bot") || navigator.userAgent.includes("crawler")) {
+            document.body.innerHTML = "<h1>Access Denied</h1>";
+        }
     </script>
 </body>
 </html>
